@@ -72,7 +72,7 @@ const TimerComponent = () => {
         } else if (currentRound % 2 === 1) {
             return `Round ${Math.ceil(currentRound / 2)}`;
         } else {
-            return 'Repos';
+            return `Repos ${Math.ceil(currentRound / 2)}`;
         }
     };
 
