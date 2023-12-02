@@ -58,6 +58,48 @@ const TimerComponent = () => {
         }
     };
 
+    const incrementRoundTime = () => {
+        let newValue = parseInt(roundTime) || 0;
+        newValue++;
+        setRoundTime(newValue.toString());
+    };
+
+    const decrementRoundTime = () => {
+        let newValue = parseInt(roundTime) || 0;
+        if (newValue > 0) {
+            newValue--;
+            setRoundTime(newValue.toString());
+        }
+    };
+
+    const incrementRestTime = () => {
+        let newValue = parseInt(restTime) || 0;
+        newValue++;
+        setRestTime(newValue.toString());
+    };
+
+    const decrementRestTime = () => {
+        let newValue = parseInt(restTime) || 0;
+        if (newValue > 0) {
+            newValue--;
+            setRestTime(newValue.toString());
+        }
+    };
+
+    const incrementRoundNumber = () => {
+        let newValue = parseInt(roundNumber) || 0;
+        newValue++;
+        setRoundNumber(newValue.toString());
+    };
+
+    const decrementRoundNumber = () => {
+        let newValue = parseInt(roundNumber) || 0;
+        if (newValue > 0) {
+            newValue--;
+            setRoundNumber(newValue.toString());
+        }
+    };
+
     useEffect(() => {
         return () => clearInterval(intervalRef.current);
     }, []);
@@ -79,39 +121,69 @@ const TimerComponent = () => {
     return (
         <View className='gap-y-4'>
             <Text className='text-white text-lg font-bold uppercase'>Durée des rounds</Text>
-            <TextInput
-                className={`bg-white/50 ${roundTimeStyle}`}
-                style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-                keyboardType="numeric"
-                placeholder="Durée des rounds en minutes"
-                value={roundTime}
-                onChangeText={setRoundTime}
-            />
+            <View className='flex flex-row gap-x-5'>
+                <TextInput
+                    className={`bg-white/50 ${restTimeStyle} text-sm p-2 w-2/3`}
+                    style={[
+                        { height: 40, borderColor: 'black', borderWidth: 1 },
+                        roundTime === '' ? { borderColor: 'red' } : null
+                    ]}
+                    keyboardType="numeric"
+                    placeholder="En minutes"
+                    value={roundTime}
+                    onChangeText={setRoundTime}
+                />
+                <View
+                    className='flex flex-row'>
+                    <Button title="+" onPress={incrementRoundTime} />
+                    <Button title="-" onPress={decrementRoundTime} />
+                </View>
+            </View>
             <Text className='text-white text-lg font-bold uppercase'>Temps de repos</Text>
-            <TextInput
-                className={`bg-white/50 ${restTimeStyle}`}
-                style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-                keyboardType="numeric"
-                placeholder="Temps de repos en minutes"
-                value={restTime}
-                onChangeText={setRestTime}
-            />
-            <Text className='text-white text-lg font-bold uppercase' >Nombre de Rounds</Text>
-            <TextInput
-                className={`bg-white/50 ${roundNumberStyle}`}
-                style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-                keyboardType="numeric"
-                placeholder="Nombre de Rounds"
-                value={roundNumber}
-                onChangeText={setRoundNumber}
-            />
-            <Text className='mb-4 text-black text-xl font-bold uppercase bg-white'>Chronomètre: {timer.toFixed(1)} Secondes</Text>
-            <Text className='mb-4 text-black text-xl font-bold uppercase bg-white'>Statut: {getStatusText()}</Text>
+            <View className='flex flex-row gap-x-5'>
+                <TextInput
+                    className={`bg-white/50 ${restTimeStyle} text-sm p-2 w-2/3`}
+                    style={[
+                        { height: 40, borderColor: 'black', borderWidth: 1 },
+                        restTime === '' ? { borderColor: 'red' } : null
+                    ]}
+                    keyboardType="numeric"
+                    placeholder="En minutes"
+                    value={restTime}
+                    onChangeText={setRestTime}
+                />
+                <View
+                    className='flex flex-row'>
+                    <Button title="+" onPress={incrementRestTime} />
+                    <Button title="-" onPress={decrementRestTime} />
+                </View>
+            </View>
+            <Text className='text-white text-lg font-bold uppercase border-corner' >Nombre de Rounds</Text>
+            <View className='flex flex-row gap-x-5'>
+                <TextInput
+                    className={`bg-white/50 ${roundNumberStyle} text-sm p-2 w-2/3`}
+                    style={[
+                        { height: 40, borderColor: 'black', borderWidth: 1 },
+                        roundNumber === '' ? { borderColor: 'red' } : null
+                    ]}
+                    keyboardType="numeric"
+                    placeholder="En nombre"
+                    value={roundNumber}
+                    onChangeText={setRoundNumber}
+                />
+                <View
+                    className='flex flex-row'>
+                    <Button title="+" onPress={incrementRoundNumber} />
+                    <Button title="-" onPress={decrementRoundNumber} />
+                </View>
+            </View>
+            <Text className='p-1 mb-4 text-white text-xl font-bold uppercase bg-black/50'>Chronomètre: {timer.toFixed(1)} Secondes</Text>
+            <Text className='p-1 mb-[10px] text-white text-xl font-bold uppercase bg-black/50'>Statut: {getStatusText()}</Text>
             <Button
                 title={isTimerActive ? 'Arrêter' : 'Démarrer'}
                 onPress={handleStartStop}
             />
-            {/*isTimerActive && <RingBellSound />*/}
+            <RingBellSound />
         </View>
     );
 };

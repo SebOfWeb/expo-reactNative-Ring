@@ -13,8 +13,12 @@ export default function App() {
         <Text style={{ color: 'white', fontSize: 50, letterSpacing: 15 }}>RING</Text>
       </View>
 
-      <View className='flex-1 items-center justify-center bg-transparent'>
-        <TimerComponent />
+      <View
+        style={{ height: 100, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.2)' }}
+        className='flex-1 items-center justify-center bg-transparent'>
+        <View>
+          <TimerComponent />
+        </View>
         <StatusBar style="auto" />
       </View>
 
