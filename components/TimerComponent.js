@@ -13,10 +13,15 @@ const TimerComponent = () => {
     const [roundTime, setRoundTime] = useState('0.1');
     const [restTime, setRestTime] = useState('0.05');
     const [roundNumber, setRoundNumber] = useState('2');
-    const [currentRound, setCurrentRound] = useState(1);
+    const [currentRound, setCurrentRound] = useState(0);
     const intervalRef = useRef(null);
+    let currRound = 0;
+    let isRestTime = true;
 
     const startRoundTimer = () => {
+        isRestTime = false;
+        currRound++;
+        setCurrentRound(currRound);
         intervalRef.current = setInterval(() => {
             setTimer(prevTimer => {
                 if (prevTimer < roundTime * 60) {
@@ -31,10 +36,8 @@ const TimerComponent = () => {
     };
 
     const startRestTimer = () => {
-        if (currentRound < roundNumber) {
-            Alert.alert("currentRound :" + currentRound)
-            setCurrentRound(currentRound + 1);
-            Alert.alert("currentRound+1 :" + currentRound)
+        isRestTime = true;
+        if (currRound < roundNumber) {
             intervalRef.current = setInterval(() => {
                 setTimer(prevTimer => {
                     if (prevTimer < restTime * 60) {
@@ -57,7 +60,6 @@ const TimerComponent = () => {
             setIsTimerActive(false);
         } else {
             setIsTimerActive(true);
-            setCurrentRound(1);
             setTimer(0);
             startRoundTimer();
         }
@@ -107,7 +109,7 @@ const TimerComponent = () => {
     };
 
     useEffect(() => {
-        
+
         return () => clearInterval(intervalRef.current);
     }, []);
 
@@ -118,11 +120,10 @@ const TimerComponent = () => {
     const getStatusText = () => {
         if (!isTimerActive) {
             return 'Arrêté';
-        } else {
-            // Vérifie si le round actuel est pair (repos) ou impair (round)
-            return currentRound % 2 === 0
-                ? `Repos ${currentRound / 2}`
-                : `Round ${Math.ceil(currentRound / 2)}`;
+        } else if (isRestTime) {
+            return `Repos: ${currentRound}`;
+        } else if (!isRestTime) {
+            return `Round: ${currentRound}`;
         }
     };
 
