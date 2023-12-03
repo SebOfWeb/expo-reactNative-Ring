@@ -66,9 +66,9 @@ const playRoundSound = async () => {
 const TimerComponent = () => {
     const [isTimerActive, setIsTimerActive] = useState(false);
     const [timer, setTimer] = useState(0);
-    const [roundTime, setRoundTime] = useState('0.1');
-    const [restTime, setRestTime] = useState('0.05');
-    const [roundNumber, setRoundNumber] = useState('2');
+    const [roundTime, setRoundTime] = useState('3');
+    const [restTime, setRestTime] = useState('1');
+    const [roundNumber, setRoundNumber] = useState('3');
     const [currentRound, setCurrentRound] = useState(0);
     const intervalRef = useRef(null);
     let currRound = 0;
