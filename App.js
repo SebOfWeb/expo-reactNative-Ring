@@ -14,7 +14,7 @@ export default function App() {
       </View>
 
       <View
-        style={{ height: 100, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.2)' }}
+        style={{ height: 100, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.3)' }}
         className='flex-1 items-center justify-center bg-transparent'>
         <View>
           <TimerComponent />
