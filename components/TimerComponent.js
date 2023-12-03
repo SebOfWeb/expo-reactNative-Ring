@@ -2,64 +2,67 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import RingBellSound from './RingBellSound';
 import { Button } from 'react-native-paper';
+import { Alert } from 'react-native';
+
 
 
 
 const TimerComponent = () => {
     const [isTimerActive, setIsTimerActive] = useState(false);
     const [timer, setTimer] = useState(0);
-    const [roundTime, setRoundTime] = useState('');
-    const [restTime, setRestTime] = useState('');
-    const [roundNumber, setRoundNumber] = useState('');
+    const [roundTime, setRoundTime] = useState('0.1');
+    const [restTime, setRestTime] = useState('0.05');
+    const [roundNumber, setRoundNumber] = useState('2');
     const [currentRound, setCurrentRound] = useState(1);
     const intervalRef = useRef(null);
+
+    const startRoundTimer = () => {
+        intervalRef.current = setInterval(() => {
+            setTimer(prevTimer => {
+                if (prevTimer < roundTime * 60) {
+                    return prevTimer + 1;
+                } else {
+                    clearInterval(intervalRef.current);
+                    startRestTimer();
+                    return 0;
+                }
+            });
+        }, 1000);
+    };
+
+    const startRestTimer = () => {
+        if (currentRound < roundNumber) {
+            Alert.alert("currentRound :" + currentRound)
+            setCurrentRound(currentRound + 1);
+            Alert.alert("currentRound+1 :" + currentRound)
+            intervalRef.current = setInterval(() => {
+                setTimer(prevTimer => {
+                    if (prevTimer < restTime * 60) {
+                        return prevTimer + 1;
+                    } else {
+                        clearInterval(intervalRef.current);
+                        startRoundTimer();
+                        return 0;
+                    }
+                });
+            }, 1000);
+        } else {
+            setIsTimerActive(false);
+        }
+    };
 
     const handleStartStop = () => {
         if (isTimerActive) {
             clearInterval(intervalRef.current);
             setIsTimerActive(false);
         } else {
-            if (roundTime === '' || restTime === '' || roundNumber === '') {
-                // Mettez en évidence les champs vides (vous pouvez personnaliser le style)
-                if (roundTime === '') setRoundTimeStyle(styles.inputError);
-                if (restTime === '') setRestTimeStyle(styles.inputError);
-                if (roundNumber === '') setRoundNumberStyle(styles.inputError);
-                return;
-            }
-
-            setRoundTimeStyle(null);
-            setRestTimeStyle(null);
-            setRoundNumberStyle(null);
-
-            let currentRoundCount = 1;
-            setCurrentRound(currentRoundCount); // Réinitialise le compteur de round
-            setTimer(0); // Réinitialise le chronomètre
             setIsTimerActive(true);
-
-            intervalRef.current = setInterval(() => {
-                setTimer(prevTimer => {
-                    const newTime = prevTimer + 0.1;
-
-                    if (newTime >= roundTime * 60) {
-                        // Fin du round, vérifiez le nombre de rounds
-                        if (currentRoundCount < roundNumber * 2) {
-                            // Début du temps de repos
-                            currentRoundCount++;
-                            setCurrentRound(currentRoundCount);
-                            return 0; // Réinitialise le chronomètre
-                        } else {
-                            // Tous les rounds sont terminés
-                            clearInterval(intervalRef.current);
-                            setIsTimerActive(false);
-                            return roundTime * 60;
-                        }
-                    }
-
-                    return newTime;
-                });
-            }, 100); // Mise à jour toutes les 100 millisecondes
+            setCurrentRound(1);
+            setTimer(0);
+            startRoundTimer();
         }
     };
+
 
     const incrementRoundTime = () => {
         let newValue = parseInt(roundTime) || 0;
@@ -104,6 +107,7 @@ const TimerComponent = () => {
     };
 
     useEffect(() => {
+        
         return () => clearInterval(intervalRef.current);
     }, []);
 
@@ -114,12 +118,14 @@ const TimerComponent = () => {
     const getStatusText = () => {
         if (!isTimerActive) {
             return 'Arrêté';
-        } else if (currentRound % 2 === 1) {
-            return `Round ${Math.ceil(currentRound / 2)}`;
         } else {
-            return `Repos ${Math.ceil(currentRound / 2)}`;
+            // Vérifie si le round actuel est pair (repos) ou impair (round)
+            return currentRound % 2 === 0
+                ? `Repos ${currentRound / 2}`
+                : `Round ${Math.ceil(currentRound / 2)}`;
         }
     };
+
 
     return (
         <View className='gap-y-4'>
