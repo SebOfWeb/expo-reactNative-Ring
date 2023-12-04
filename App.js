@@ -1,9 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import { ImageBackground, Text, View } from 'react-native';
-import backgroundImage from '../Ring/assets/bg-ring.png';
+import backgroundImage from './assets/bg-ring.png';
 import TimerComponent from './components/TimerComponent';
+import { useKeepAwake } from 'expo-keep-awake';
+
 
 export default function App() {
+  useKeepAwake();
   return (
     <ImageBackground
       className='flex-1'
