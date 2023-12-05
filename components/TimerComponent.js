@@ -9,58 +9,12 @@ const playRingBellSound = async () => {
     const soundObject = new Audio.Sound();
 
     try {
-        await soundObject.loadAsync(require('../assets/sounds/Ding.wav'));
+        await soundObject.loadAsync(require('../assets/sounds/bipbip.wav'));
         await soundObject.playAsync();
     } catch (error) {
         console.error('Erreur lors de la lecture du son :', error);
     }
 };
-
-const playRound1Sound = async () => {
-    const soundObject = new Audio.Sound();
-
-    try {
-        await soundObject.loadAsync(require('../assets/sounds/Round-1.wav'));
-        await soundObject.playAsync();
-    } catch (error) {
-        console.error('Erreur lors de la lecture du son :', error);
-    }
-};
-
-const playRound2Sound = async () => {
-    const soundObject = new Audio.Sound();
-
-    try {
-        await soundObject.loadAsync(require('../assets/sounds/Round-2.wav'));
-        await soundObject.playAsync();
-    } catch (error) {
-        console.error('Erreur lors de la lecture du son :', error);
-    }
-};
-
-const playRound3Sound = async () => {
-    const soundObject = new Audio.Sound();
-
-    try {
-        await soundObject.loadAsync(require('../assets/sounds/Round-3.wav'));
-        await soundObject.playAsync();
-    } catch (error) {
-        console.error('Erreur lors de la lecture du son :', error);
-    }
-};
-
-const playRoundSound = async () => {
-    const soundObject = new Audio.Sound();
-
-    try {
-        await soundObject.loadAsync(require('../assets/sounds/Round.wav'));
-        await soundObject.playAsync();
-    } catch (error) {
-        console.error('Erreur lors de la lecture du son :', error);
-    }
-};
-
-
 
 
 const TimerComponent = () => {
@@ -78,23 +32,7 @@ const TimerComponent = () => {
         isRestTime = false;
         currRound++;
         setCurrentRound(currRound);
-        switch (currRound) {
-            case 1:
-                playRound1Sound();
-                break;
-
-            case 2:
-                playRound2Sound();
-                break;
-
-            case 3:
-                playRound3Sound();
-                break;
-
-            default:
-                playRoundSound();
-                break;
-        }
+        playRingBellSound();
 
         intervalRef.current = setInterval(() => {
             setTimer(prevTimer => {
@@ -149,7 +87,7 @@ const TimerComponent = () => {
 
     const decrementRoundTime = () => {
         let newValue = parseInt(roundTime) || 0;
-        if (newValue > 0) {
+        if (newValue > 1) {
             newValue--;
             setRoundTime(newValue.toString());
         }
@@ -177,7 +115,7 @@ const TimerComponent = () => {
 
     const decrementRoundNumber = () => {
         let newValue = parseInt(roundNumber) || 0;
-        if (newValue > 0) {
+        if (newValue > 1) {
             newValue--;
             setRoundNumber(newValue.toString());
         }
@@ -204,8 +142,8 @@ const TimerComponent = () => {
 
 
     return (
-        <View className='gap-y-4'>
-            <Text className='text-white text-lg font-bold uppercase'>Durée des rounds</Text>
+        <View className='gap-y-4 w-[310px]'>
+            <Text className='text-red-500 text-lg font-bold uppercase'>Durée des rounds</Text>
             <View className='flex flex-row gap-x-5'>
                 <Text className='p-2 rounded-xl w-[130px] flex items-center justify-center text-white text-lg font-bold uppercase bg-black/50'> {roundTime} min</Text>
                 <View
@@ -224,7 +162,7 @@ const TimerComponent = () => {
                     </Button>
                 </View>
             </View>
-            <Text className='text-white text-lg font-bold uppercase'>Temps de repos</Text>
+            <Text className='text-red-500 text-lg font-bold uppercase'>Temps de repos</Text>
             <View className='flex flex-row gap-x-5'>
                 <Text className='p-2 rounded-xl w-[130px] flex items-center justify-center text-white text-lg font-bold uppercase bg-black/50'> {restTime} min</Text>
                 <View
@@ -243,8 +181,8 @@ const TimerComponent = () => {
                     </Button>
                 </View>
             </View>
-            <Text className='text-white text-lg font-bold uppercase border-corner' >Nombre de Rounds</Text>
-            <View className='flex flex-row gap-x-5'>
+            <Text className='text-red-500 text-lg font-bold uppercase border-corner' >Nombre de Rounds</Text>
+            <View className='flex flex-row gap-x-5 mb-4'>
                 <Text className='p-2 rounded-xl w-[130px] flex items-center justify-center text-white text-lg font-bold uppercase bg-black/50'> {roundNumber}</Text>
                 <View
                     className='flex flex-row'>
@@ -262,8 +200,8 @@ const TimerComponent = () => {
                     </Button>
                 </View>
             </View>
-            <Text className='p-2 rounded-xl mb-4 text-white text-xl font-bold uppercase bg-black/50'>Chronomètre: {timer.toFixed(1)} Secondes</Text>
-            <Text className='p-2 rounded-xl mb-[100px] text-white text-xl font-bold uppercase bg-black/50'>ROUND: {getStatusText()}</Text>
+            <Text className='p-2 rounded-xl mb-4 text-white text-xl font-bold uppercase bg-black/50'>Chronomètre: {timer} Secondes</Text>
+            <Text className='p-2 rounded-xl mb-10 text-white text-xl font-bold uppercase bg-black/50'>ROUND: {getStatusText()}</Text>
             <Button
                 className='w-3/4 flex mx-auto bg-red-500'
                 mode="contained"
