@@ -142,72 +142,111 @@ const TimerComponent = () => {
 
 
     return (
-        <View className='gap-y-4 w-[310px]'>
-            <Text className='text-red-500 text-lg font-bold uppercase'>Durée des rounds</Text>
-            <View className='flex flex-row gap-x-5'>
-                <Text className='p-2 rounded-xl w-[130px] flex items-center justify-center text-white text-lg font-bold uppercase bg-black/50'> {roundTime} min</Text>
+        <View
+            className='gap-y-4 w-[310px]'>
+            <Text
+                style={{ fontFamily: 'Capsmall' }}
+                className='text-red-500 text-xl uppercase'>Durée des rounds</Text>
+            <View className='flex flex-row gap-x-5 bg-red-500 py-5 rounded-3xl w-[350px]'>
+                <Text
+                    style={{ fontFamily: 'Capsmall' }}
+                    className='p-2 rounded-3xl w-[170px] flex items-center justify-center text-blue-800 text-center text-lg uppercase bg-white/90'> {roundTime} min</Text>
                 <View
                     className='flex flex-row'>
                     <Button
-                        className='bg-white/70'
+                        className='bg-white/90 rounded-3xl'
                         onPress={decrementRoundTime}
                     >
-                        -
+                        <Text className='text-blue-800 text-xl'>
+                            -
+                        </Text>
                     </Button>
                     <Button
-                        className='bg-black/70'
-                        title="-" onPress={incrementRoundTime}
+                        className='bg-blue-800/90 rounded-3xl'
+                        onPress={incrementRoundTime}
                     >
-                        +
+                        <Text className='text-white text-xl'>
+                            +
+                        </Text>
                     </Button>
                 </View>
             </View>
-            <Text className='text-red-500 text-lg font-bold uppercase'>Temps de repos</Text>
-            <View className='flex flex-row gap-x-5'>
-                <Text className='p-2 rounded-xl w-[130px] flex items-center justify-center text-white text-lg font-bold uppercase bg-black/50'> {restTime} min</Text>
+            <Text
+                style={{ fontFamily: 'Capsmall' }}
+                className='text-red-500 text-xl uppercase'>Temps de repos</Text>
+            <View className='flex flex-row gap-x-5 bg-red-500 py-5 rounded-3xl w-[350px]'>
+                <Text
+                    style={{ fontFamily: 'Capsmall' }}
+                    className='p-2 rounded-3xl w-[170px] flex items-center justify-center text-blue-800 text-center text-lg uppercase bg-white/90'> {restTime} min</Text>
                 <View
                     className='flex flex-row'>
                     <Button
-                        className='bg-white/70'
+                        className='bg-white/90 rounded-3xl'
                         onPress={decrementRestTime}
                     >
-                        -
+                        <Text className='text-blue-800 text-xl'>
+                            -
+                        </Text>
                     </Button>
                     <Button
-                        className='bg-black/70'
+                        className='bg-blue-800/90 rounded-3xl'
                         title="-" onPress={incrementRestTime}
                     >
-                        +
+                        <Text className='text-white text-xl'>
+                            +
+                        </Text>
                     </Button>
                 </View>
             </View>
-            <Text className='text-red-500 text-lg font-bold uppercase border-corner' >Nombre de Rounds</Text>
-            <View className='flex flex-row gap-x-5 mb-4'>
-                <Text className='p-2 rounded-xl w-[130px] flex items-center justify-center text-white text-lg font-bold uppercase bg-black/50'> {roundNumber}</Text>
+            <Text
+                style={{ fontFamily: 'Capsmall' }}
+                className='text-red-500 text-xl uppercase' >Nombre de Rounds</Text>
+            <View className='flex flex-row gap-x-5 bg-red-500 py-5 rounded-3xl w-[350px]'>
+                <Text
+                    style={{ fontFamily: 'Capsmall' }}
+                    className='p-2 rounded-3xl w-[170px] flex items-center justify-center text-blue-800 text-center text-lg uppercase bg-white/90'> {roundNumber}</Text>
                 <View
                     className='flex flex-row'>
                     <Button
-                        className='bg-white/70'
+                        className='bg-white/90 rounded-3xl'
                         onPress={decrementRoundNumber}
                     >
-                        -
+                        <Text className='text-blue-800 text-xl'>
+                            -
+                        </Text>
                     </Button>
                     <Button
-                        className='bg-black/70'
+                        className='bg-blue-800/90 rounded-3xl'
                         title="-" onPress={incrementRoundNumber}
                     >
-                        +
+                        <Text className='text-white text-xl'>
+                            +
+                        </Text>
                     </Button>
                 </View>
             </View>
-            <Text className='p-2 rounded-xl mb-4 text-white text-xl font-bold uppercase bg-black/50'>Chronomètre: {timer} Secondes</Text>
-            <Text className='p-2 rounded-xl mb-10 text-white text-xl font-bold uppercase bg-black/50'>ROUND: {getStatusText()}</Text>
+            <Text
+                style={{ fontFamily: 'Capsmall' }}
+                className='p-2 rounded-xl mb-4 text-white text-xl uppercase bg-blue-800/90'>Chronomètre: {timer} Secondes</Text>
+            <Text
+                style={{ fontFamily: 'Capsmall' }}
+                className='p-2 rounded-xl mb-5 text-white text-xl uppercase bg-blue-800/90'>ROUND: {getStatusText()}</Text>
             <Button
-                className='w-3/4 flex mx-auto bg-red-500'
+                style={{
+                    borderRadius: 50, // Assurez un bord arrondi élevé pour un effet circulaire
+                    height: 120, // Hauteur du bouton
+                    width: 120, // Largeur du bouton
+                }}
+
+                className='flex justify-center mx-auto bg-red-500'
                 mode="contained"
                 onPress={handleStartStop}
             >
-                {isTimerActive ? 'Arrêter' : 'Démarrer'}
+                <Text
+                    style={{ fontFamily: 'Capsmall' }}
+                    className='text-2xl'>
+                    {isTimerActive ? 'Stop' : 'FIGHT'}
+                </Text>
             </Button>
 
         </View>
