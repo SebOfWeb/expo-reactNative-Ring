@@ -33,7 +33,7 @@ export default function App() {
     >
       <View
         className='bg-blue-800/90 rounded-b-lg'
-        style={{ height: 120, justifyContent: 'center', alignItems: 'center' }}>
+        style={{ height: '15%', justifyContent: 'center', alignItems: 'center' }}>
         <Text style={{ fontFamily: 'Capsmall', color: 'white', fontSize: 100, letterSpacing: 2 }}>RING</Text>
       </View>
 

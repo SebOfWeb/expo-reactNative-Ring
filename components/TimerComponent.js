@@ -143,16 +143,16 @@ const TimerComponent = () => {
 
     return (
         <View
-            className='gap-y-4 w-[310px]'>
+            className='gap-y-2 w-[80%] h-[90%]'>
             <Text
                 style={{ fontFamily: 'Capsmall' }}
                 className='text-red-500 text-xl uppercase'>Durée des rounds</Text>
-            <View className='flex flex-row gap-x-5 bg-red-500 py-5 rounded-3xl w-[350px]'>
+            <View className='flex flex-row bg-red-600 py-5 pr-4 pl-4 rounded-3xl w-[100%]'>
                 <Text
                     style={{ fontFamily: 'Capsmall' }}
-                    className='p-2 rounded-3xl w-[170px] flex items-center justify-center text-blue-800 text-center text-lg uppercase bg-white/90'> {roundTime} min</Text>
+                    className='p-2 rounded-3xl w-[50%] flex items-center justify-center text-blue-800 text-center text-lg uppercase bg-white/90'> {roundTime} min</Text>
                 <View
-                    className='flex flex-row'>
+                    className='flex flex-row pl-4'>
                     <Button
                         className='bg-white/90 rounded-3xl'
                         onPress={decrementRoundTime}
@@ -174,12 +174,12 @@ const TimerComponent = () => {
             <Text
                 style={{ fontFamily: 'Capsmall' }}
                 className='text-red-500 text-xl uppercase'>Temps de repos</Text>
-            <View className='flex flex-row gap-x-5 bg-red-500 py-5 rounded-3xl w-[350px]'>
+            <View className='flex flex-row bg-red-600 py-5 pr-4 pl-4 rounded-3xl w-[100%]'>
                 <Text
                     style={{ fontFamily: 'Capsmall' }}
-                    className='p-2 rounded-3xl w-[170px] flex items-center justify-center text-blue-800 text-center text-lg uppercase bg-white/90'> {restTime} min</Text>
+                    className='p-2 rounded-3xl w-[50%] flex items-center justify-center text-blue-800 text-center text-lg uppercase bg-white/90'> {restTime} min</Text>
                 <View
-                    className='flex flex-row'>
+                    className='flex flex-row pl-4'>
                     <Button
                         className='bg-white/90 rounded-3xl'
                         onPress={decrementRestTime}
@@ -201,12 +201,12 @@ const TimerComponent = () => {
             <Text
                 style={{ fontFamily: 'Capsmall' }}
                 className='text-red-500 text-xl uppercase' >Nombre de Rounds</Text>
-            <View className='flex flex-row gap-x-5 bg-red-500 py-5 rounded-3xl w-[350px]'>
+            <View className='flex flex-row bg-red-600 py-5 pr-4 pl-4 rounded-3xl w-[100%]'>
                 <Text
                     style={{ fontFamily: 'Capsmall' }}
-                    className='p-2 rounded-3xl w-[170px] flex items-center justify-center text-blue-800 text-center text-lg uppercase bg-white/90'> {roundNumber}</Text>
+                    className='p-2 rounded-3xl w-[50%] flex items-center justify-center text-blue-800 text-center text-lg uppercase bg-white/90'> {roundNumber}</Text>
                 <View
-                    className='flex flex-row'>
+                    className='flex flex-row pl-4'>
                     <Button
                         className='bg-white/90 rounded-3xl'
                         onPress={decrementRoundNumber}
@@ -227,10 +227,10 @@ const TimerComponent = () => {
             </View>
             <Text
                 style={{ fontFamily: 'Capsmall' }}
-                className='p-2 rounded-xl mb-4 text-white text-xl uppercase bg-blue-800/90'>Chronomètre: {timer} Secondes</Text>
+                className='p-2 rounded-xl text-white text-xl uppercase bg-blue-800/90'>Chronomètre: {timer} Secondes</Text>
             <Text
                 style={{ fontFamily: 'Capsmall' }}
-                className='p-2 rounded-xl mb-5 text-white text-xl uppercase bg-blue-800/90'>ROUND: {getStatusText()}</Text>
+                className='p-2 rounded-xl mb-2 text-white text-xl uppercase bg-blue-800/90'>ROUND: {getStatusText()}</Text>
             <Button
                 style={{
                     borderRadius: 50, // Assurez un bord arrondi élevé pour un effet circulaire
@@ -238,7 +238,7 @@ const TimerComponent = () => {
                     width: 120, // Largeur du bouton
                 }}
 
-                className='flex justify-center mx-auto bg-red-500'
+                className='flex justify-center mx-auto bg-red-600'
                 mode="contained"
                 onPress={handleStartStop}
             >
@@ -252,11 +252,5 @@ const TimerComponent = () => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    inputError: {
-        borderColor: 'red',
-    },
-});
 
 export default TimerComponent;
