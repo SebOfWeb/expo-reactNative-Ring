@@ -245,7 +245,7 @@ const TimerComponent = () => {
                 <Text
                     style={{ fontFamily: 'Capsmall' }}
                     className='text-2xl'>
-                    {isTimerActive ? 'Stop' : 'FIGHT'}
+                    {isTimerActive ? 'STOP' : 'FIGHT'}
                 </Text>
             </Button>
 
