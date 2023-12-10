@@ -143,7 +143,7 @@ const TimerComponent = () => {
 
     return (
         <View
-            className='gap-y-2 w-[80%] h-[90%]'>
+            className='gap-y-2 flex-1 mt-1'>
             <Text
                 style={{ fontFamily: 'Capsmall' }}
                 className='text-red-500 text-xl uppercase'>Durée des rounds</Text>
