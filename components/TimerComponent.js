@@ -143,11 +143,18 @@ const TimerComponent = () => {
 
     return (
         <View
-            className='gap-y-2 flex-1 mt-1'>
+            name='container'
+            className='gap-y-2 flex-1'>
+            <View
+                className='bg-blue-800/90 rounded-b-lg'
+                style={{ flex: 5, height: '15%', justifyContent: 'center', alignItems: 'center' }}>
+                <Text style={{ fontFamily: 'Capsmall', color: 'white', fontSize: 100, letterSpacing: 2 }}>RING</Text>
+            </View>
             <Text
-                style={{ fontFamily: 'Capsmall' }}
-                className='text-red-500 text-xl uppercase'>Durée des rounds</Text>
-            <View className='flex flex-row bg-red-600 py-5 pr-4 pl-4 rounded-3xl w-[100%]'>
+                style={{ flex: 1, fontFamily: 'Capsmall' }}
+                className='text-red-500 text-xl uppercase ml-2'>Durée des rounds</Text>
+            <View className='flex flex-row bg-red-600 py-5 pr-4 pl-4 rounded-3xl w-[100%]'
+                style={{ flex: 2, maxHeight: 90, fontFamily: 'Capsmall' }}>
                 <Text
                     style={{ fontFamily: 'Capsmall' }}
                     className='p-2 rounded-3xl w-[50%] flex items-center justify-center text-blue-800 text-center text-lg uppercase bg-white/90'> {roundTime} min</Text>
@@ -172,9 +179,10 @@ const TimerComponent = () => {
                 </View>
             </View>
             <Text
-                style={{ fontFamily: 'Capsmall' }}
-                className='text-red-500 text-xl uppercase'>Temps de repos</Text>
-            <View className='flex flex-row bg-red-600 py-5 pr-4 pl-4 rounded-3xl w-[100%]'>
+                style={{ flex: 1, fontFamily: 'Capsmall' }}
+                className='text-red-500 text-xl uppercase ml-2'>Temps de repos</Text>
+            <View className='flex flex-row bg-red-600 py-5 pr-4 pl-4 rounded-3xl w-[100%]'
+                style={{ flex: 2, maxHeight: 90, fontFamily: 'Capsmall' }}>
                 <Text
                     style={{ fontFamily: 'Capsmall' }}
                     className='p-2 rounded-3xl w-[50%] flex items-center justify-center text-blue-800 text-center text-lg uppercase bg-white/90'> {restTime} min</Text>
@@ -199,9 +207,10 @@ const TimerComponent = () => {
                 </View>
             </View>
             <Text
-                style={{ fontFamily: 'Capsmall' }}
-                className='text-red-500 text-xl uppercase' >Nombre de Rounds</Text>
-            <View className='flex flex-row bg-red-600 py-5 pr-4 pl-4 rounded-3xl w-[100%]'>
+                style={{ flex: 1, fontFamily: 'Capsmall' }}
+                className='text-red-500 text-xl uppercase ml-2' >Nombre de Rounds</Text>
+            <View className='flex flex-row bg-red-600 py-5 pr-4 pl-4 rounded-3xl w-[100%]'
+                style={{ flex: 2, maxHeight: 90, fontFamily: 'Capsmall' }}>
                 <Text
                     style={{ fontFamily: 'Capsmall' }}
                     className='p-2 rounded-3xl w-[50%] flex items-center justify-center text-blue-800 text-center text-lg uppercase bg-white/90'> {roundNumber}</Text>
@@ -226,15 +235,17 @@ const TimerComponent = () => {
                 </View>
             </View>
             <Text
-                style={{ fontFamily: 'Capsmall' }}
+                style={{ flex: 1, fontFamily: 'Capsmall' }}
                 className='p-2 rounded-xl text-white text-xl uppercase bg-blue-800/90'>Chronomètre: {timer} Secondes</Text>
             <Text
-                style={{ fontFamily: 'Capsmall' }}
+                style={{ flex: 1, fontFamily: 'Capsmall' }}
                 className='p-2 rounded-xl mb-2 text-white text-xl uppercase bg-blue-800/90'>ROUND: {getStatusText()}</Text>
             <Button
                 style={{
+                    flex: 5,
+                    marginBottom: 20,
                     borderRadius: 50, // Assurez un bord arrondi élevé pour un effet circulaire
-                    height: 120, // Hauteur du bouton
+                    maxHeight: 120, // Hauteur du bouton
                     width: 120, // Largeur du bouton
                 }}
 
@@ -248,7 +259,6 @@ const TimerComponent = () => {
                     {isTimerActive ? 'STOP' : 'FIGHT'}
                 </Text>
             </Button>
-
         </View>
     );
 };

@@ -28,24 +28,6 @@ export default function App() {
   }
 
   return (
-    <View
-      className='flex-1 bg-white'
-    >
-      <View
-        className='bg-blue-800/90 rounded-b-lg'
-        style={{ height: '15%', justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{ fontFamily: 'Capsmall', color: 'white', fontSize: 100, letterSpacing: 2 }}>RING</Text>
-      </View>
-
-      <View
-        style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.1)' }}
-        className='flex-1 items-center justify-center bg-transparent'>
-        <View>
-          <TimerComponent />
-        </View>
-        <StatusBar style="auto" />
-      </View>
-
-    </View>
+    <TimerComponent />
   );
 }
