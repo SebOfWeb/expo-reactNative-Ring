@@ -1,6 +1,6 @@
 import * as Font from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
-import { ImageBackground, Text, View } from 'react-native';
+import { ImageBackground, Text, View, SafeAreaView } from 'react-native';
 import TimerComponent from './components/TimerComponent';
 import { useKeepAwake } from 'expo-keep-awake';
 import { useEffect, useState } from 'react';
