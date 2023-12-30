@@ -1,132 +1,38 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { View, Text, SafeAreaView } from 'react-native';
 import { Button } from 'react-native-paper';
-import playRingBellSound from '../utils/playRingBellSound';
+import useTimer from '../hooks/useTimer';
 
 
-const TimerComponent = () => {
-    const [isTimerActive, setIsTimerActive] = useState(false);
-    const [timer, setTimer] = useState(0);
-    const [roundTime, setRoundTime] = useState('3');
-    const [restTime, setRestTime] = useState('1');
-    const [roundNumber, setRoundNumber] = useState('3');
-    const [currentRound, setCurrentRound] = useState(0);
-    const intervalRef = useRef(null);
-    let currRound = 0;
-    let isRestTime = true;
+const Screen = () => {
 
-    const startRoundTimer = () => {
-        isRestTime = false;
-        currRound++;
-        setCurrentRound(currRound);
-        playRingBellSound();
+    const {
+        isTimerActive,
+        timer,
+        roundTime,
+        restTime,
+        roundNumber,
+        currentRound,
+        handleStartStop,
+        changeTime,
+    } = useTimer();
 
-        intervalRef.current = setInterval(() => {
-            setTimer(prevTimer => {
-                if (prevTimer < roundTime * 60) {
-                    return prevTimer + 1;
-                } else {
-                    clearInterval(intervalRef.current);
-                    startRestTimer();
-                    playRingBellSound();
-                    return 0;
-                }
-            });
-        }, 1000);
-    };
-
-    const startRestTimer = () => {
-        isRestTime = true;
-        if (currRound < roundNumber) {
-            intervalRef.current = setInterval(() => {
-                setTimer(prevTimer => {
-                    if (prevTimer < restTime * 60) {
-                        return prevTimer + 1;
-                    } else {
-                        clearInterval(intervalRef.current);
-                        startRoundTimer();
-                        return 0;
-                    }
-                });
-            }, 1000);
-        } else {
-            setIsTimerActive(false);
-        }
-    };
-
-    const handleStartStop = () => {
-        if (isTimerActive) {
-            clearInterval(intervalRef.current);
-            setIsTimerActive(false);
-        } else {
-            setIsTimerActive(true);
-            setTimer(0);
-            startRoundTimer();
-        }
-    };
-
-
-    const incrementRoundTime = () => {
-        let newValue = parseInt(roundTime) || 0;
-        newValue++;
-        setRoundTime(newValue.toString());
-    };
-
-    const decrementRoundTime = () => {
-        let newValue = parseInt(roundTime) || 0;
-        if (newValue > 1) {
-            newValue--;
-            setRoundTime(newValue.toString());
-        }
-    };
-
-    const incrementRestTime = () => {
-        let newValue = parseInt(restTime) || 0;
-        newValue++;
-        setRestTime(newValue.toString());
-    };
-
-    const decrementRestTime = () => {
-        let newValue = parseInt(restTime) || 0;
-        if (newValue > 0) {
-            newValue--;
-            setRestTime(newValue.toString());
-        }
-    };
-
-    const incrementRoundNumber = () => {
-        let newValue = parseInt(roundNumber) || 0;
-        newValue++;
-        setRoundNumber(newValue.toString());
-    };
-
-    const decrementRoundNumber = () => {
-        let newValue = parseInt(roundNumber) || 0;
-        if (newValue > 1) {
-            newValue--;
-            setRoundNumber(newValue.toString());
-        }
-    };
-
-    useEffect(() => {
-
-        return () => clearInterval(intervalRef.current);
-    }, []);
-
-    const [roundTimeStyle, setRoundTimeStyle] = useState(null);
-    const [restTimeStyle, setRestTimeStyle] = useState(null);
-    const [roundNumberStyle, setRoundNumberStyle] = useState(null);
+    const incrementRoundTime = () => changeTime('roundTime', roundTime + 1);
+    const decrementRoundTime = () => changeTime('roundTime', roundTime - 1);
+    const incrementRestTime = () => changeTime('restTime', restTime + 1);
+    const decrementRestTime = () => changeTime('restTime', restTime - 1);
+    const incrementRoundNumber = () => changeTime('roundNumber', roundNumber + 1);
+    const decrementRoundNumber = () => changeTime('roundNumber', roundNumber - 1);
 
     const getStatusText = () => {
         if (!isTimerActive) {
             return 'Arrêté';
-        } else if (isRestTime) {
+        } else if (currentRound % 2 === 0) {
             return `${currentRound}`;
-        } else if (!isRestTime) {
+        } else {
             return `${currentRound}`;
         }
     };
-
 
     return (
         <SafeAreaView
@@ -229,4 +135,4 @@ const TimerComponent = () => {
     );
 };
 
-export default TimerComponent;
+export default Screen;
