@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { Audio } from 'expo-av';
 
-function RingBellSound() {
+const RingBellSound = () => {
     useEffect(() => {
+        let soundObject;
+
         const playSound = async () => {
-            const soundObject = new Audio.Sound();
+            soundObject = new Audio.Sound();
 
             try {
                 await soundObject.loadAsync(require('../assets/sounds/Ding.wav'));
@@ -17,11 +19,13 @@ function RingBellSound() {
         playSound();
 
         return () => {
-            soundObject.unloadAsync();
+            if (soundObject) {
+                soundObject.unloadAsync();
+            }
         };
     }, []);
 
     return null;
-}
+};
 
 export default RingBellSound;
