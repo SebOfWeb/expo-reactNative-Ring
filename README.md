@@ -15,8 +15,8 @@ Ring est une application mobile développée en utilisant Expo et React Native q
 
 
 ## Captures d'écran
+<img src="assets/screenshots/Screenshot.png" width="300" alt="Description alternative">
 
-![Ring screenshot](assets/screenshots/Screenshot.png)
 
 ## Installation
 
