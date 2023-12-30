@@ -1,6 +1,6 @@
 import { Audio } from 'expo-av';
 
-export const playRingBellSound = async () => {
+const playRingBellSound = async () => {
     const soundObject = new Audio.Sound();
     try {
         await soundObject.loadAsync(require('../assets/sounds/bipbip.wav'));

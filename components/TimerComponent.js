@@ -1,11 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, TextInput, StyleSheet, SafeAreaView } from 'react-native';
-import RingBellSound from './RingBellSound';
+import { View, Text, SafeAreaView } from 'react-native';
 import { Button } from 'react-native-paper';
-import { Alert } from 'react-native';
-import { Audio } from 'expo-av';
-import { StatusBar } from 'expo-status-bar';
-import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import playRingBellSound from '../utils/playRingBellSound';
 
 
@@ -136,21 +131,15 @@ const TimerComponent = () => {
     return (
         <SafeAreaView
             name='container'
-            style={{ paddingTop: 0 }}
-            className='gap-y-2 flex-1'>
-            <View
-                className='bg-blue-800/90 rounded-b-lg'
-                style={{ flex: 5, maxHeight: 180, height: '15%', justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{ fontFamily: 'Capsmall', color: 'white', fontSize: 100, letterSpacing: 2 }}>RING</Text>
+            className='gap-y-2 flex-1 pt-0'>
+            <View className="bg-blue-800/90 rounded-b-lg max-h-[180px] h-[15%] justify-center items-center">
+                <Text className="font-Capsmall text-white text-[120px] tracking-wider">RING</Text>
             </View>
             <Text
-                style={{ flex: 1, fontFamily: 'Capsmall', fontSize: RFPercentage(1.6) }}
-                className='text-red-500 text-xl uppercase ml-2'>Durée des rounds</Text>
-            <View className='flex flex-row bg-red-600 py-3 pr-4 pl-4 rounded-3xl w-[100%]'
-                style={{ flex: 2, maxHeight: 70, fontFamily: 'Capsmall' }}>
+                className='text-red-500 text-xl uppercase ml-2 font-Capsmall'>Durée des rounds</Text>
+            <View className='flex flex-row bg-red-600 py-3 pr-4 pl-4 rounded-3xl w-[100%] font-Capsmall max-h-[70px]'>
                 <Text
-                    style={{ fontFamily: 'Capsmall' }}
-                    className='p-2 rounded-3xl w-[50%] flex items-center justify-center text-blue-800 text-center text-lg uppercase bg-white/90'> {roundTime} min</Text>
+                    className='font-Capsmall p-2 rounded-3xl w-[50%] flex items-center justify-center text-blue-800 text-center text-lg uppercase bg-white/90'> {roundTime} min</Text>
                 <View
                     className='flex flex-row pl-4'>
                     <Button
@@ -172,10 +161,8 @@ const TimerComponent = () => {
                 </View>
             </View>
             <Text
-                style={{ flex: 1, fontFamily: 'Capsmall', fontSize: RFPercentage(1.6) }}
-                className='text-red-500 text-xl uppercase ml-2'>Temps de repos</Text>
-            <View className='flex flex-row bg-red-600 py-3 pr-4 pl-4 rounded-3xl w-[100%]'
-                style={{ flex: 2, maxHeight: 70, fontFamily: 'Capsmall' }}>
+                className='font-Capsmall text-red-500 text-xl uppercase ml-2'>Temps de repos</Text>
+            <View className='font-Capsmall max-h-[70px] flex flex-row bg-red-600 py-3 pr-4 pl-4 rounded-3xl w-[100%]'>
                 <Text
                     style={{ fontFamily: 'Capsmall' }}
                     className='p-2 rounded-3xl w-[50%] flex items-center justify-center text-blue-800 text-center text-lg uppercase bg-white/90'> {restTime} min</Text>
@@ -200,10 +187,8 @@ const TimerComponent = () => {
                 </View>
             </View>
             <Text
-                style={{ flex: 1, fontFamily: 'Capsmall', fontSize: RFPercentage(1.6) }}
-                className='text-red-500 text-xl uppercase ml-2' >Nombre de Rounds</Text>
-            <View className='flex flex-row bg-red-600 py-3 pr-4 pl-4 rounded-3xl w-[100%]'
-                style={{ flex: 2, maxHeight: 70, fontFamily: 'Capsmall' }}>
+                className='font-Capsmall text-red-500 text-xl uppercase ml-2' >Nombre de Rounds</Text>
+            <View className='font-Capsmall max-h-[70px] flex flex-row bg-red-600 py-3 pr-4 pl-4 rounded-3xl w-[100%]'>
                 <Text
                     style={{ fontFamily: 'Capsmall' }}
                     className='p-2 rounded-3xl w-[50%] flex items-center justify-center text-blue-800 text-center text-lg uppercase bg-white/90'> {roundNumber}</Text>
@@ -228,31 +213,19 @@ const TimerComponent = () => {
                 </View>
             </View>
             <Text
-                style={{ flex: 1, maxHeight: 40, fontFamily: 'Capsmall', fontSize: RFPercentage(1.6) }}
-                className='p-2 flex align-center rounded-xl text-white text-xl uppercase bg-blue-800/90'>Chronomètre: {timer} Secondes</Text>
+                className='font-Capsmall max-h-[40px] p-2 flex align-center rounded-xl text-white text-xl uppercase bg-blue-800/90'>Chronomètre: {timer} Secondes</Text>
             <Text
-                style={{ flex: 1, maxHeight: 40, fontFamily: 'Capsmall', fontSize: RFPercentage(1.6) }}
-                className='p-2 rounded-xl mb-2 text-white text-xl uppercase bg-blue-800/90'>ROUND: {getStatusText()}</Text>
+                className='font-Capsmall max-h-[40px] p-2 rounded-xl mb-2 text-white text-xl uppercase bg-blue-800/90'>ROUND: {getStatusText()}</Text>
             <Button
-                style={{
-                    flex: 5,
-                    marginBottom: 20,
-                    borderRadius: 50, // Assurez un bord arrondi élevé pour un effet circulaire
-                    maxHeight: 120, // Hauteur du bouton
-                    width: 120, // Largeur du bouton
-                }}
-
-                className='flex justify-center mx-auto bg-red-600'
+                className='flex mb-[20px] h-[120px] w-[120px] justify-center mx-auto rounded-full bg-red-600'
                 mode="contained"
-                onPress={handleStartStop}
-            >
+                onPress={handleStartStop}>
                 <Text
-                    style={{ fontFamily: 'Capsmall' }}
-                    className='text-2xl'>
+                    className='font-Capsmall text-2xl'>
                     {isTimerActive ? 'STOP' : 'FIGHT'}
                 </Text>
             </Button>
-        </SafeAreaView>
+        </SafeAreaView >
     );
 };
 
