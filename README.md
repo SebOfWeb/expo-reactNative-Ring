@@ -4,32 +4,34 @@
 
 ## Présentation
 
-Ring est une application mobile développée en utilisant Expo et React Native qui vous permet de gérer facilement un timer pour les rounds de sports de combat tels que la boxe, le MMA, le kickboxing, etc. L'application offre une interface conviviale pour suivre et personnaliser vos sessions d'entraînement.
+Ring est une application mobile développée en utilisant Expo et React Native qui vous permet de gérer facilement un timer pour les rounds de sports de combat tels que la boxe, le MMA, le kickboxing, etc. 
 
 ## Fonctionnalités
 
 - Réglage personnalisé du temps de chaque round.
 - Configuration du temps de pause entre les rounds.
-- Sonneries et alertes personnalisables pour indiquer le début et la fin de chaque round.
+- Sonneries et alertes pour indiquer le début et la fin de chaque round.
 - Compteur visuel pour suivre le temps restant dans le round en cours.
-- Historique des séances d'entraînement pour suivre votre progression.
+
 
 ## Captures d'écran
 
-assets/screenshots/Screenshot.png
+![Ring screenshot](assets/screenshots/Screenshot.png)
 
 ## Installation
 
 1. Assurez-vous d'avoir Node.js et Expo CLI installés sur votre ordinateur.
 2. Clonez ce dépôt sur votre machine.
 
-git clone https://github.com/votre_utilisateur/ring-app.git
+git clone https://github.com/SebOfWeb/expo-reactNative-Ring.git
 
 3. Accédez au répertoire du projet.
 
 4. Installez les dépendances.
+=> npm i
 
 5. Lancez l'application.
+=> npm run start
 
 6. Scannez le code QR avec l'application Expo Go sur votre appareil mobile pour tester l'application en direct.
 
