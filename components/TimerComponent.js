@@ -6,18 +6,7 @@ import { Alert } from 'react-native';
 import { Audio } from 'expo-av';
 import { StatusBar } from 'expo-status-bar';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
-
-
-const playRingBellSound = async () => {
-    const soundObject = new Audio.Sound();
-
-    try {
-        await soundObject.loadAsync(require('../assets/sounds/bipbip.wav'));
-        await soundObject.playAsync();
-    } catch (error) {
-        console.error('Erreur lors de la lecture du son :', error);
-    }
-};
+import playRingBellSound from '../utils/playRingBellSound';
 
 
 const TimerComponent = () => {
