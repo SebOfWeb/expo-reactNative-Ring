@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'Capsmall': ['Capsmall', 'sans-serif'] // Assurez-vous que 'Capsmall' est correctement chargée dans votre projet
+        'Capsmall': ['Capsmall', 'sans-serif']
       }
     },
   },

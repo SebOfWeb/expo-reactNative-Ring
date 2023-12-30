@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import playRingBellSound from '../utils/playRingBellSound'; // Assurez-vous que le chemin d'accès est correct
+import playRingBellSound from '../utils/playRingBellSound';
 
 const useTimer = () => {
     const [isTimerActive, setIsTimerActive] = useState(false);

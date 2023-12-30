@@ -1,4 +1,3 @@
-// hooks/useFonts.js
 import { useState, useEffect } from 'react';
 import * as Font from 'expo-font';
 
